@@ -95,7 +95,7 @@ class _ContactListWithSearchState extends State<ContactListWithSearch> {
           SearchList(searchList:searchList,):
           ContactListViewBuilder(),
 
-          floatingActionButton: MYFloatingActionButton()
+          floatingActionButton: MYFloatingActionButton(addFromFirstScreen: false,)
       );
     });
   }

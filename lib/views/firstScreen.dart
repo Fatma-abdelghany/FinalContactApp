@@ -35,7 +35,7 @@ class FirstScreen extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: MYFloatingActionButton()
+        floatingActionButton: MYFloatingActionButton(addFromFirstScreen: true,)
       ),
     );
   }

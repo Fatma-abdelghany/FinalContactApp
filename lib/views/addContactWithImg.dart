@@ -1,19 +1,24 @@
 import 'dart:io';
 
+import 'package:contact_app/views/firstScreen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants.dart';
 import '../entities/strings_manager.dart';
 import '../models/contact.dart';
 import '../viewModels/appViewModel.dart';
 import '../widgets/customTextField.dart';
+import 'contactsListWithSearch.dart';
 
 
 class AddContactWithImg extends StatefulWidget {
-  const AddContactWithImg({super.key});
+ bool isFromFirstScreen;
+   AddContactWithImg({required this.isFromFirstScreen,super.key});
 
   @override
   State<AddContactWithImg> createState() => _AddContactWithImgState();
@@ -57,6 +62,18 @@ class _AddContactWithImgState extends State<AddContactWithImg> {
           centerTitle: false,
           backgroundColor: constants.primaryColor,
           title: Text(AppStrings.newContact),
+          leading: IconButton(
+            onPressed: () {
+              //Navigator.pop(context) ;
+              if(widget.isFromFirstScreen){
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context)=>FirstScreen())
+              ); }else{
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context)=>ContactListWithSearch())
+                );              }
+              },
+            icon: Icon(Icons.close),),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -80,7 +97,7 @@ class _AddContactWithImgState extends State<AddContactWithImg> {
                     }
 
                     // final prefs = await SharedPreferences.getInstance();
-                    // prefs.setBool('isFirstTime', false); // You might want to save this on a callback.
+                    // prefs.setBool('isAddContact', true); // You might want to save this on a callback.
 
 
                   },

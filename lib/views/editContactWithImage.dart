@@ -63,7 +63,7 @@ class _EditContactWithImageState extends State<EditContactWithImage> {
         appBar: AppBar(
           centerTitle: false,
           backgroundColor: constants.primaryColor,
-          title: Text(AppStrings.newContact),
+          title: Text(AppStrings.editContact),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),

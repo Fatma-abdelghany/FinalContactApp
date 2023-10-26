@@ -9,18 +9,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
  // const boolKey = 'isFirstTime';
-  final isFirstTime = prefs.getBool('isFirstTime') ?? true;
+  final isAddContact = prefs.getBool('isAddContact') ?? false;
   runApp(
     ChangeNotifierProvider(
         create: (context)=>AppViewModel(),
-      child:  MyApp(isFirstTime:isFirstTime),
+      child:  MyApp(isAddContact:isAddContact),
     )
   );
 }
 
 class MyApp extends StatelessWidget {
-   final bool isFirstTime;
-   const MyApp({super.key,  required this.isFirstTime});
+   final bool isAddContact;
+   const MyApp({super.key,  required this.isAddContact});
 
   // This widget is the root of your application.
   @override
@@ -31,14 +31,15 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       title: 'Contacts',
-      home: isFirstTime?FirstScreen():ContactListWithSearch(),
+      home: FirstScreen(),
+      //home: isAddContact?FirstScreen():ContactListWithSearch(),
     );
   }
 }
-Future<bool> checkISFirst() async{
-  var prefs = await SharedPreferences.getInstance();
-  var boolKey = 'isFirstTime';
-   var isFirstTime = prefs.getBool(boolKey) ?? true;
-  return isFirstTime;
-}
+// Future<bool> checkISFirst() async{
+//   var prefs = await SharedPreferences.getInstance();
+//   var boolKey = 'isFirstTime';
+//    var isFirstTime = prefs.getBool(boolKey) ?? true;
+//   return isFirstTime;
+// }
 
